@@ -1,0 +1,31 @@
+[
+    {
+        "name": "Men shoes",
+        "id": "0",
+        "category": "Men",
+        "colors": [
+            "black",
+            "white"
+        ],
+        "img_url": "./"
+    },
+    {
+        "name": "women shoes",
+        "id": "0",
+        "category": "Women",
+        "colors": [
+            "red"
+        ],
+        "img_url": "./"
+    },
+    {
+        "name": "kids shoes",
+        "id": "0",
+        "category": "kids",
+        "colors": [
+            "yellow",
+            "white"
+        ],
+        "img_url": "./"
+    }
+]

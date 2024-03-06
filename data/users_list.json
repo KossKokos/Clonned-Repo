@@ -1,0 +1,20 @@
+[
+  {
+    "username": "bober",
+    "password": "koko",
+    "savedQuotes": [],
+    "postedQuotes": [],
+    "pfpPath": "./img/icons/user-icon.jpeg",
+    "tags": [],
+    "authors": []
+  },
+  {
+    "username": "bob",
+    "password": "bob",
+    "savedQuotes": [],
+    "postedQuotes": [],
+    "pfpPath": "./img/icons/user-icon.jpeg",
+    "tags": [],
+    "authors": []
+  }
+]
