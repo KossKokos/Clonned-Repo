@@ -28,13 +28,6 @@ function getUsersFile(userListFP) {
   });
 }
 
-//info obj
-
-const testReqObj = {
-  username: "kostya",
-  filePath: "../data/users_list.json",
-}
-
 //get user data
 
 async function getUserData(reqUserObj){
@@ -61,12 +54,20 @@ async function mainFun(shoesListFP,reqUserObj) {
   };
 }
 
-async function test(shoesListFP,reqUserObj){
-  const data = await mainFun(shoesListFP,reqUserObj);
-  console.log(data)
-}
+//info obj
 
-test('../data/shoes_list.json',testReqObj)
+// const testReqObj = {
+//   username: "kostya",
+//   filePath: "../data/users_list.json",
+// }
+
+
+// async function test(shoesListFP,reqUserObj){
+//   const data = await mainFun(shoesListFP,reqUserObj);
+//   console.log(data)
+// }
+
+// test('../data/shoes_list.json',testReqObj)
 
 // Exports ==>>
 
