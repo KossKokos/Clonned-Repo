@@ -2,19 +2,22 @@
   {
     "username": "bober",
     "password": "koko",
-    "savedQuotes": [],
-    "postedQuotes": [],
-    "pfpPath": "./img/icons/user-icon.jpeg",
-    "tags": [],
-    "authors": []
+    "cart": "",
+    "id": "0",
+    "pfpPath": "./img/icons/user-icon.jpeg"
   },
   {
     "username": "bob",
     "password": "bob",
-    "savedQuotes": [],
-    "postedQuotes": [],
-    "pfpPath": "./img/icons/user-icon.jpeg",
-    "tags": [],
-    "authors": []
+    "id": "1",
+    "cart": "",
+    "pfpPath": "./img/icons/user-icon.jpeg"
+  },
+  {
+    "username": "kostya",
+    "password": "korva",
+    "id": "1",
+    "cart": "",
+    "pfpPath": "./img/icons/user-icon.jpeg"
   }
 ]

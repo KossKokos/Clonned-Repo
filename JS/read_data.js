@@ -14,32 +14,61 @@ function getShoesFile(shoesListFP) {
   });
 }
 
+//read user list file
+
+function getUsersFile(userListFP) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(userListFP, "utf-8", (err, data) => {
+      if (err) {
+        reject(`Error: ${err}`);
+      } else {
+        resolve(JSON.parse(data));
+      }
+    });
+  });
+}
+
+//info obj
+
+const testReqObj = {
+  username: "kostya",
+  filePath: "../data/users_list.json",
+}
+
+//get user data
+
+async function getUserData(reqUserObj){
+  const {filePath} = reqUserObj;
+  const userList = await getUsersFile(filePath);
+  const {username} = reqUserObj;
+  let userData ;
+  userList.forEach(user => {
+    if(username === user.username){
+      console.log(user)
+      userData = user;
+    }
+  });
+  userData?console.log('The user was found'):console.log('User not found');
+  return userData
+}
+
 //Main function
 
-async function mainFun(shoesListFP) {
+async function mainFun(shoesListFP,reqUserObj) {
   return {
-    shoesList : await getShoesFile(shoesListFP)
+    shoesList : await getShoesFile(shoesListFP),
+    userData : await getUserData(reqUserObj)
   };
 }
 
-// async function test(filepath){
-//   const data = await mainFun(filepath);
-//   console.log(data)
-//   const colorsList = new Set();
-//   const {shoesList} = data;
-//   shoesList.forEach(shoe => {
-//     const {colors} = shoe ;
-//     colors.forEach(color => {
-//       colorsList.add(color)
-//     })
-//     console.log(colors)
-//   });
-//   console.log(colorsList);
-// }
+async function test(shoesListFP,reqUserObj){
+  const data = await mainFun(shoesListFP,reqUserObj);
+  console.log(data)
+}
 
-// test('../data/shoes_list.json')
+test('../data/shoes_list.json',testReqObj)
 
-//Exports ==>>
+// Exports ==>>
 
 module.exports = mainFun;
 
