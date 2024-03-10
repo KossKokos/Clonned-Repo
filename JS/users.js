@@ -3,9 +3,14 @@ const readData = require('./read_data');
 //info obj
 
 const testReqObj = {
-    username: "bob",
+    username: "abdelrahim houbi",
     filePath: "../data/users_list.json",
   }
   
 
-readData('../data/shoes_list.json',testReqObj)
+async function test(){
+  const data = await readData.userData(testReqObj);
+  console.log(data)
+}
+
+test()

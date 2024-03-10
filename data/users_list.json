@@ -1,9 +1,10 @@
 [
   {
-    "username": "bober",
+    "username": "abdelrahim houbi",
     "password": "koko",
     "cart": "",
     "id": "0",
+    "userType": "dev",
     "pfpPath": "./img/icons/user-icon.jpeg"
   },
   {
@@ -11,13 +12,15 @@
     "password": "bob",
     "id": "1",
     "cart": "",
+    "userType": "client",
     "pfpPath": "./img/icons/user-icon.jpeg"
   },
   {
     "username": "kostya",
     "password": "korva",
-    "id": "1",
+    "id": "2",
     "cart": "",
+    "userType": "client",
     "pfpPath": "./img/icons/user-icon.jpeg"
   }
 ]

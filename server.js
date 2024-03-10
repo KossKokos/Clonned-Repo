@@ -11,8 +11,25 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get('/',async (req,res) =>{
+  res.sendFile(path.join(__dirname, 'views', 'index.html'))
+});
+
+app.get('/developer',async (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'developer_mode.html'))
+});
+
+// app.get('/developer',async (req, res) => {
+//   res.sendFile(path.join(__dirname, 'views', 'developer_mode.html'))
+// });
+
+// app.get('/developer',async (req, res) => {
+//   res.sendFile(path.join(__dirname, 'views', 'developer_mode.html'))
+// });
+
 app.use("/api", apiRouter);
 
 app.listen(port, () => {
-  console.log(`The quotes project Server has started on port:${port}`);
+  console.log(`The IT_9 project Server has started on port:${port}`);
 });
+

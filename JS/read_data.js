@@ -37,7 +37,6 @@ async function getUserData(reqUserObj){
   let userData ;
   userList.forEach(user => {
     if(username === user.username){
-      console.log(user)
       userData = user;
     }
   });
@@ -47,27 +46,10 @@ async function getUserData(reqUserObj){
 
 //Main function
 
-async function mainFun(shoesListFP,reqUserObj) {
-  return {
-    shoesList : await getShoesFile(shoesListFP),
-    userData : await getUserData(reqUserObj)
-  };
-}
-
-//info obj
-
-// const testReqObj = {
-//   username: "kostya",
-//   filePath: "../data/users_list.json",
-// }
-
-
-// async function test(shoesListFP,reqUserObj){
-//   const data = await mainFun(shoesListFP,reqUserObj);
-//   console.log(data)
-// }
-
-// test('../data/shoes_list.json',testReqObj)
+const mainFun = {
+    shoesList : getShoesFile,
+    userData : getUserData
+  }
 
 // Exports ==>>
 
