@@ -31,7 +31,6 @@ function generateToken(length = 25){
         tokenArr.push(randomChr());
     }
     const token = tokenArr.join('');
-    console.log(token);
     return token;
 }
 
@@ -47,11 +46,34 @@ function getTokenList(path){
     })
 }
 
-async function checkToken(path){
+async function checkToken(path,token){
     const  data = JSON.parse( await getTokenList(path));
-    console.log(data)
+    let exist = false;
+    data.forEach(obj => {
+        if(obj.token === token){
+            exist = true ;
+            return obj.username
+        }
+    });
+    if(!exist){
+        console.log('token not found')
+    }
 }
 
-checkToken('../data/token_list.json')
+async function createCookie(path){
+    const tokenData = JSON.parse(await getTokenList(path))
+    const tokenList = [];
+    tokenData.foreach(cookie => {
+        tokenList.push(cookie.token)
+    })
+    console.log(tokenList);
+}
 
- module.exports = generateToken;
+createCookie('../data/cookies.json')
+
+// checkToken('../data/token_list.json','49zz92eqy92643v827ha490d')
+
+ module.exports = {
+    checkToken,
+
+ }
