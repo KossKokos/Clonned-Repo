@@ -34,7 +34,7 @@ function generateToken(length = 25){
     return token;
 }
 
-function getTokenList(path){
+function getCookies(path){
     return new Promise((resole,reject) => {
         fs.readFile(path,'utf-8',(error,data) => {
             if(error){
@@ -47,12 +47,13 @@ function getTokenList(path){
 }
 
 async function checkToken(path,token){
-    const  data = JSON.parse( await getTokenList(path));
+    const  data = JSON.parse( await getCookies(path));
     let exist = false;
     data.forEach(obj => {
         if(obj.token === token){
             exist = true ;
-            return obj.username
+            console.log(obj.id)
+            return obj.id
         }
     });
     if(!exist){
@@ -60,20 +61,54 @@ async function checkToken(path,token){
     }
 }
 
-async function createCookie(path){
-    const tokenData = JSON.parse(await getTokenList(path))
+async function getTokenList(path){
+    const tokenData = JSON.parse(await getCookies(path))
     const tokenList = [];
-    tokenData.foreach(cookie => {
+    tokenData.forEach(cookie => {
         tokenList.push(cookie.token)
     })
-    console.log(tokenList);
+    return tokenList
 }
 
-createCookie('../data/cookies.json')
+async function createCookie(path,token,id){
+    const cookiesJsonFile = fs.readFileSync(path,'utf-8');
+    const cookiesFile = JSON.parse(cookiesJsonFile);
+    const cookie = {
+        token,
+        id
+    }
+    cookiesFile.push(cookie)
+    fs.writeFile(path, JSON.stringify(cookiesFile,null,2), 'utf-8', (err) => {
+        if (err) {
+            console.log("There was an error writing the file: ",err);
+        } else{
+            console.log(`a cookie was added to the list`);
+        }
+    }); 
+}
 
-// checkToken('../data/token_list.json','49zz92eqy92643v827ha490d')
+//delete cookie
+
+async function deleteCookie(path,token){
+    const cookiesJsonFile = fs.readFileSync(path,'utf-8');
+    const cookiesFile = JSON.parse(cookiesJsonFile);
+    cookiesFile.forEach((cookie,i) => {
+        if(cookie.token === token){
+            cookiesFile.splice(i,1)
+        }
+    })
+    fs.writeFile(path, JSON.stringify(cookiesFile,null,2), 'utf-8', (err) => {
+        if (err) {
+            console.log("There was an error writing the file: ",err);
+        } else{
+            console.log(`a cookie was deleted from the list`);
+        }
+    }); 
+}
 
  module.exports = {
     checkToken,
-
+    getTokenList,
+    createCookie,
+    deleteCookie
  }

@@ -19,13 +19,13 @@ app.get('/developer',async (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'developer_mode.html'))
 });
 
-// app.get('/developer',async (req, res) => {
-//   res.sendFile(path.join(__dirname, 'views', 'developer_mode.html'))
-// });
+app.get('/login',async (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'sign_up.html'))
+});
 
-// app.get('/developer',async (req, res) => {
-//   res.sendFile(path.join(__dirname, 'views', 'developer_mode.html'))
-// });
+app.get('/sign_up',async (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'login.html'))
+});
 
 app.use("/api", apiRouter);
 

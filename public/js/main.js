@@ -1,1 +1,22 @@
-document.cookie = "id=30595035; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/";
+
+const cookie = document.cookie;
+
+const cookieParts = cookie.split(';');
+
+
+let token;
+for (const part of cookieParts) {
+    if (part.trim().startsWith('token=')) {
+        token = part.trim().substring('token='.length);
+        break;
+    }
+}
+if (!token) {
+    setTimeout(() => {
+        document.location.href = '/login'
+    },3000)
+    
+}
+
+console.log(token)
+
