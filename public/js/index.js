@@ -14,7 +14,7 @@ for (const part of cookieParts) {
 if (!token) {
     setTimeout(() => {
         document.location.href = '/login'
-    },3000)
+    },1800)
     
 }
 
