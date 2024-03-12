@@ -48,8 +48,13 @@
     font-size: .9rem;
     padding: 8px 15px;
     color: #ffffff;
+    transition: background-color 0.6s ease;
   }
   
+.input:hover {
+  background-color: rgb(24, 24, 24);
+}
+
   .form-section {
     padding: 16px;
     font-size: .85rem;
@@ -82,5 +87,23 @@
   }
   
   .form button:hover {
-    background-color: #005ce6;
+    background-color: #474747;
+    color:white;
   }
+
+  /*Animation classes*/
+
+  .slide-in-bck-center {
+            animation: slide-in-bck-center 1s ;
+  }
+
+  /*Key frames*/
+
+@keyframes slide-in-bck-center {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

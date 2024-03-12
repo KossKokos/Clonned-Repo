@@ -15,7 +15,7 @@ body {
    }
    @keyframes color-change-2x {
      0% {
-       background: #171424;
+       background: #3f3f3f;
      }
      100% {
        background: #131313;

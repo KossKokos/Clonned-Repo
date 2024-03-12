@@ -1,6 +1,11 @@
 const registerForm = document.querySelector("#register-form");
-const passwordInput = document.querySelector('#pass-word')
+const passwordInput = document.querySelector('#pass-word');
+const signUpLink = document.querySelector('#sign_up_link');
 
+signUpLink.addEventListener("click", () => {
+    const formBox = document.querySelector('.form-box');
+    formBox.classList.add('right-box'); 
+})
 passwordInput.addEventListener("dblclick", (event) => {
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
