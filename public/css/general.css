@@ -1,24 +1,27 @@
 
 body {
-     animation: color-change-2x 6s linear infinite alternate both;
+     transition: background-color 3s ;
 }
+
+.animated-background{
+  animation: color-change-2x 10s linear infinite alternate both;
+}
+
 
 /* Key frames */
 
-@-webkit-keyframes color-change-2x {
-     0% {
-       background: #131313;
-     }
-     100% {
-       background: #19181a;
-     }
-   }
    @keyframes color-change-2x {
-     0% {
-       background: #3f3f3f;
+     0% , 100%{
+       background: hsl(0, 0%, 0%);
      }
-     100% {
-       background: #131313;
+     25%{
+      background: hsl(0, 0%, 7%);
+     }
+     50% {
+       background: hsl(0, 0%, 7%);
+     }
+     75%{
+      background: hsl(0, 0%, 15%);
      }
    }
    

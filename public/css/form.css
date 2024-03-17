@@ -5,8 +5,7 @@
     border-radius: 16px;
     color: #ffffff;
     margin: auto;
-    margin-top: 50vh;
-    transform: translateY(-50%);
+    margin-top: 20vh;
   }
   
   .form {
@@ -51,6 +50,11 @@
     transition: background-color 0.6s ease;
   }
   
+.reveal {
+  animation: reveal 1s ;
+}
+
+
 .input:hover {
   background-color: rgb(24, 24, 24);
 }
@@ -83,7 +87,7 @@
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color .3s ease;
+    transition: background-color 0.3s ease;
   }
   
   .form button:hover {
@@ -94,10 +98,25 @@
   /*Animation classes*/
 
   .slide-in-bck-center {
-            animation: slide-in-bck-center 1s ;
+  animation: slide-in-bck-center 1s ;
   }
 
+  .puff-out-center {
+    animation: flip-out-hor-top 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;  }
+
   /*Key frames*/
+
+  @keyframes flip-out-hor-top {
+    0% {
+      transform: rotateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: rotateX(70deg);
+      opacity: 0;
+    }
+  }
+
 
 @keyframes slide-in-bck-center {
   0% {
@@ -105,5 +124,14 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes reveal {
+  0% , 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }

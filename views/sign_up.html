@@ -4,8 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <script src="/js/api.js"></script>
 </head>
-<body>
-    <h1>Sign up</h1>
+<body class="animated-background">
+
+    <main>
+
+        <div class="form-box slide-in-bck-center">
+            <form id="register-form" class="form">
+                <span class="title">Sign up</span>
+                <span class="subtitle">Create a free account with a username only.</span>
+                <div class="form-container">
+                  <input id="user_name" name="username" type="text" class="input" placeholder="Username" required>
+                        <input id="pass-word" name="password" type="password" class="input" placeholder="Password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="form-section">
+              <p>You have an account already ?<a id="login-link"> login </a> </p>
+            </div>
+            </div>
+    
+
+    </main>
+
+    
+    <script src="/js/sign_up.js"></script>
 </body>
 </html>
