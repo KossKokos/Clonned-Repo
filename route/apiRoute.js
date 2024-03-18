@@ -4,7 +4,8 @@ const router = express.Router();
 const readData = require('../JS/read_data.js');
 const token = require('../JS/token.js');
 const path = require('path');
-const id = require('../JS/id.js')
+const id = require('../JS/id.js');
+const setData = require('../JS/set_data.js');
 
 router.post( '/sign_up', async (req,res) => {
     const {username, password} = req.body;
@@ -17,29 +18,17 @@ router.post( '/sign_up', async (req,res) => {
         res.json({usernameIs: true});
     }else {
         const userData = {
-            username: username,
-            password: password,
-            id: id.generateUnique('./data/users_list.json','./data/shoes_list.json'),
+            username,
+            password,
+            id: await id.generateUnique('./data/users_list.json','./data/shoes_list.json'),
             cart   : "",
-            userType   : "dev",
-            pfpPath: "./img/icons/user-icon.jpeg"
+            userType   : "client",
+            pfpPath: "/img/icons/user-icon.jpeg"
         }
-    }
-    let userToken ;
-    let passwordIs = false ;
-    let usernameIs = false ;
-    if(userData){
-        usernameIs = true;
-        if(userData.password === password){
-            passwordIs = true ;
-            userToken = await token.generateToken('./data/cookies.json');
-            token.createCookie('./data/cookies.json',userToken,userData.id);
-            res.json({token :userToken});
-        }else{
-            res.json({usernameIs})
-        }
-    }else {
-        res.json({usernameIs})
+        setData.createUser(userData,'./data/users_list.json');
+        userToken = await token.generateToken('./data/cookies.json');
+        token.createCookie('./data/cookies.json',userToken,userData.id);
+        res.json({token :userToken});
     }
 })
 
