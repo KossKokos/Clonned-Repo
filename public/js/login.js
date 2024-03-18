@@ -2,16 +2,25 @@ const registerForm = document.querySelector("#register-form");
 const passwordInput = document.querySelector('#pass-word');
 const signUpLink = document.querySelector('#sign_up_link');
 const body = document.querySelector( 'body' );
+const styleElement = document.createElement('style');
+document.head.appendChild(styleElement);
 let canTrigger = true ;
 
 signUpLink.addEventListener("click", () => {
     const formBox = document.querySelector('.form-box');
-    formBox.classList.add('puff-out-center'); 
-    body.classList.remove('animated-background') ;  
-    body.style.backgroundColor = 'black'; 
+    formBox.classList.add('puff-out-center');
+    const computedStyle = window.getComputedStyle(body);
+    const currentColor = computedStyle.backgroundColor ;
+    const keyframe = `@keyframes turn-black{
+        0%   {background: ${currentColor};}
+        100%  {background: hsl(0, 0%, 0%);}
+    }`
+    styleElement.sheet.insertRule(keyframe);
+    body.style.animation = 'turn-black 2s';
     setTimeout(()=>{
+        body.style.backgroundColor = 'black';
         window.location.href = '/sign_up';
-    },3000)
+    },2000)
 })
 passwordInput.addEventListener("dblclick", (event) => {
     if(canTrigger){
