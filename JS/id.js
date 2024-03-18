@@ -1,8 +1,8 @@
 const fs = require('fs');
 
-function readFile(){
+function readFile(filePath){
     return new Promise((resolve,reject) => {
-            fs.readFile('./shoes_list.json','utf-8', (err,data) => {
+            fs.readFile(filePath,'utf-8', (err,data) => {
                 if (!err){
                     resolve(JSON.parse(data));
                 }else {
@@ -18,28 +18,42 @@ function randomId(){
     return id
 }
 
-async function  main() {
+async function  getIdList(userListFP,shoesListFP) {
+    const shoesFile = await readFile(shoesListFP);
+    const usersFile = await readFile(userListFP);
     const idList = [];
-    const data = await readFile();
-    data.forEach(element => {
-        let id = randomId();
-        console.log(id);
-        if(idList.includes(id)){
-            id = randomId();
-            console.log('same id was found')
-        }else {
-            element['Id'] = id;
-            idList.push(id);
-        }
-    });
-    console.log(data);
-    console.log(idList);
-    fs.writeFile('./quotes.json',JSON.stringify(data,null,2),(err) => {
-        if(err){
-            console.log(err);
-        }else {
-            console.log('file saved')
-        }
-    });
+    shoesFile.forEach(shoe => {
+        idList.push(shoe.id);
+    })
+    usersFile.forEach(user => {
+        idList.push(user.id);
+    })
+    return idList
 }
-main();
+
+async function generateUnique(userListFP,shoesListFP){
+    const idList = await getIdList(userListFP,shoesListFP);
+    const id = randomId();
+    if(idList.includes(id)){
+        return generateUnique
+    }else {
+        return id ;
+    }
+}
+
+//test
+
+
+// async function test(path1,path2){
+//     const id = await generateUnique(path1,path2)
+//     console.log(id)
+// }
+
+// test('../data/users_list.json','../data/shoes_list.json')
+
+//Exports
+
+module.exports = {
+    generateUnique,
+    getIdList
+}

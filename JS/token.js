@@ -1,6 +1,5 @@
 const fs = require('fs');
 
-
 function generateRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -25,13 +24,22 @@ function randomChr(){
     }
 }
 
-function generateToken(length = 25){
+async function generateToken(filePath,length = 25){
     const tokenArr = [];
     for(i = 1;i < length; i++){
         tokenArr.push(randomChr());
     }
     const token = tokenArr.join('');
-    return token;
+    const cookies = JSON.parse(await getCookies(filePath));
+    const tokenList = [];
+    cookies.forEach((cookie)=>{
+        tokenList.push(cookie.token)
+    })
+    if(tokenList.includes(token)){
+        return generateToken
+    }else {
+        return token;
+    }  
 }
 
 function getCookies(path){
@@ -46,6 +54,8 @@ function getCookies(path){
     })
 }
 
+//function that takes the filepath and the token and return the user id number
+
 async function checkToken(path,token){
     const  data = JSON.parse( await getCookies(path));
     let exist = false;
@@ -57,9 +67,12 @@ async function checkToken(path,token){
         }
     });
     if(!exist){
-        console.log('token not found')
+        console.log('token not found');
+        return exist
     }
 }
+
+
 
 async function getTokenList(path){
     const tokenData = JSON.parse(await getCookies(path))
@@ -69,6 +82,8 @@ async function getTokenList(path){
     })
     return tokenList
 }
+
+// a function that takes file path, cookie and the user id to create a cookie on file
 
 async function createCookie(path,token,id){
     const cookiesJsonFile = fs.readFileSync(path,'utf-8');
@@ -106,9 +121,16 @@ async function deleteCookie(path,token){
     }); 
 }
 
+// async function test(path,length){
+//     const token = await generateToken(path,length);
+//     console.log(token);
+// }
+// test('../data/cookies.json',10)
+
  module.exports = {
     checkToken,
     getTokenList,
     createCookie,
-    deleteCookie
+    deleteCookie,
+    generateToken
  }

@@ -22,6 +22,7 @@ signUpLink.addEventListener("click", () => {
         window.location.href = '/sign_up';
     },2000)
 })
+
 passwordInput.addEventListener("dblclick", (event) => {
     if(canTrigger){
         canTrigger = false ;
@@ -42,6 +43,8 @@ passwordInput.addEventListener("dblclick", (event) => {
     
 })
 
+//fetch 
+
 registerForm.setAttribute( "action", `http://${api}:${port}/api/register`);
 registerForm.setAttribute("method","post"); 
 
@@ -57,5 +60,11 @@ registerForm.addEventListener( 'submit', async (event) => {
         }
         });
     const data =  await response.json();
-    
+    if(data.token){
+        document.cookie = `token=${data.token}; expires=Thu, 18 Dec 2100 12:00:00 UTC; path=/`;
+    }else {
+        const {usernameIs} = data;
+        !usernameIs? alert("Username doesn't exist!") : alert('Wrong password!');
+    }
+    console.log(data);
 })

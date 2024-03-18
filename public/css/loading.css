@@ -8,6 +8,10 @@
     }
   }
   
+.loader {
+  transition: opacity 1s;
+}
+
   .square {
     background: #ddd;
     width: 10px;

@@ -42,6 +42,7 @@ passwordInput.addEventListener("dblclick", (event) => {
     setTimeout(() => canTrigger = true,2000)
     
 })
+//fetch 
 
 registerForm.setAttribute( "action", `http://${api}:${port}/api/register`);
 registerForm.setAttribute("method","post"); 
@@ -50,7 +51,7 @@ registerForm.addEventListener( 'submit', async (event) => {
     event.preventDefault();
     const formData = new FormData(registerForm);
     const objectFormData = Object.fromEntries(formData);
-    const response = await fetch('/api/login', {
+    const response = await fetch('/api/sign_up', {
         method: 'POST',
         body: JSON.stringify(objectFormData),
         headers: {
@@ -58,5 +59,10 @@ registerForm.addEventListener( 'submit', async (event) => {
         }
         });
     const data =  await response.json();
-    
+    if(data.token){
+        document.cookie = `token=${data.token}; expires=Thu, 18 Dec 2100 12:00:00 UTC; path=/`;
+    }else {
+        const {usernameIs} = data;
+        usernameIs? alert("This username is not available!") : null;
+    }
 })

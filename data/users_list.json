@@ -2,8 +2,8 @@
   {
     "username": "abdelrahim houbi",
     "password": "koko",
-    "cart": "",
     "id": "0",
+    "cart": "",
     "userType": "dev",
     "pfpPath": "./img/icons/user-icon.jpeg"
   },

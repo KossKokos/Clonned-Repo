@@ -1,6 +1,6 @@
 
 const cookie = document.cookie;
-
+const loader = document.querySelector('.loader')
 const cookieParts = cookie.split(';');
 
 
@@ -14,9 +14,11 @@ for (const part of cookieParts) {
 if (!token) {
     setTimeout(() => {
         document.location.href = '/login'
-    },1800)
+    },1900)
     
 }
-
+setTimeout(() => {
+    loader.style.opacity = '0'
+}, 1100);
 console.log(token)
 
