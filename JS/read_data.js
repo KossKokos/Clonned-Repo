@@ -28,7 +28,7 @@ function getUsersFile(userListFP) {
   });
 }
 
-//get user data
+//get user data by username
 
 async function getUserData(reqUserObj){
   const {filePath} = reqUserObj;
@@ -43,12 +43,27 @@ async function getUserData(reqUserObj){
   userData?console.log('The user was found'):console.log('User not found');
   return userData
 }
+//get user data by id
+
+async function getUserById(id,filePath){
+  const userList = await getUsersFile(filePath);
+  let userData ;
+  userList.forEach(user => {
+    if(id === user.id){
+      userData = user;
+    }
+  });
+  userData?console.log('The user was found'):console.log('User not found');
+  return userData
+}
 
 //Main function
 
 const mainFun = {
     shoesList : getShoesFile,
-    userData : getUserData
+    userData : getUserData,
+    userDataById : getUserById
+
   }
 
 // Exports ==>>

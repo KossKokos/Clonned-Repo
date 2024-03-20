@@ -24,6 +24,15 @@ function randomChr(){
     }
 }
 
+function temporaryToken(length = 20){
+    const tokenArr = [];
+    for(i = 1;i < length; i++){
+        tokenArr.push(randomChr());
+    }
+    return tokenArr.join('');
+    
+}
+
 async function generateToken(filePath,length = 25){
     const tokenArr = [];
     for(i = 1;i < length; i++){
@@ -59,17 +68,20 @@ function getCookies(path){
 async function checkToken(path,token){
     const  data = JSON.parse( await getCookies(path));
     let exist = false;
+    let id;
     data.forEach(obj => {
         if(obj.token === token){
             exist = true ;
-            console.log(obj.id)
-            return obj.id
+            id = obj.id;
+            
         }
     });
     if(!exist){
         console.log('token not found');
         return exist
-    }
+    }else {
+            return id
+        }
 }
 
 
@@ -132,5 +144,6 @@ async function deleteCookie(path,token){
     getTokenList,
     createCookie,
     deleteCookie,
-    generateToken
+    generateToken,
+    temporaryToken
  }

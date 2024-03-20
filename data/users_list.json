@@ -12,7 +12,7 @@
     "password": "bob",
     "id": "1",
     "cart": "",
-    "userType": "client",
+    "userType": "user",
     "pfpPath": "./img/icons/user-icon.jpeg"
   },
   {
@@ -20,7 +20,15 @@
     "password": "korva",
     "id": "2",
     "cart": "",
-    "userType": "client",
+    "userType": "user",
     "pfpPath": "./img/icons/user-icon.jpeg"
+  },
+  {
+    "username": "ironman",
+    "password": "polo",
+    "id": "16695",
+    "cart": "",
+    "userType": "user",
+    "pfpPath": "/img/icons/user-icon.jpeg"
   }
 ]

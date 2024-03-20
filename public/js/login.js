@@ -62,6 +62,7 @@ registerForm.addEventListener( 'submit', async (event) => {
     const data =  await response.json();
     if(data.token){
         document.cookie = `token=${data.token}; expires=Thu, 18 Dec 2100 12:00:00 UTC; path=/`;
+        document.location.href = '/';
     }else {
         const {usernameIs} = data;
         !usernameIs? alert("Username doesn't exist!") : alert('Wrong password!');

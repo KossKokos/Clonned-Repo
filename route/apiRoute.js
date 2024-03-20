@@ -6,6 +6,7 @@ const token = require('../JS/token.js');
 const path = require('path');
 const id = require('../JS/id.js');
 const setData = require('../JS/set_data.js');
+const { log } = require('console');
 
 router.post( '/sign_up', async (req,res) => {
     const {username, password} = req.body;
@@ -22,7 +23,7 @@ router.post( '/sign_up', async (req,res) => {
             password,
             id: await id.generateUnique('./data/users_list.json','./data/shoes_list.json'),
             cart   : "",
-            userType   : "client",
+            userType   : "user",
             pfpPath: "/img/icons/user-icon.jpeg"
         }
         setData.createUser(userData,'./data/users_list.json');
@@ -54,6 +55,24 @@ router.post( '/login', async (req,res) => {
         }
     }else {
         res.json({usernameIs})
+    }
+})
+
+router.get('/user', async (req,res) => {
+    const userToken = req.query.data ;
+    const userId = await token.checkToken('./data/cookies.json',userToken);
+    const tempToken = token.temporaryToken();
+    console.log(userId)
+    if(userId){
+        const userData = await readData.userDataById(userId,'./data/users_list.json');
+        const {userType} = userData;
+        res.json({tempToken,userType});
+        router.get(`/${userType}/${tempToken}`,async (req , res)=>{
+                res.sendFile(path.join(__dirname, '../views', `${userType}.html`))
+            })
+    
+    }else {
+        res.json(userId)
     }
 })
 
